@@ -36,30 +36,19 @@ If censoring first and last names (e.g., "John Doe"), censoring whitespaces betw
 
 ### Basic Censoring Example:
 ```bash
-pipenv run python redactor.py --input '*.txt' 
-                    --names --dates --phones --address
-                    --output 'docs/' 
-                    --stats stdout
+pipenv run python redactor.py --input '*.txt' --names --dates --phones --address --output 'docs/' --stats stdout
 ```
 This command censors names and dates from the input file `input.txt` and saves the result to the `docs/` directory.
 
 ### Concept Censoring Example:
 ```bash
-pipenv run python redactor.py --input '*.txt' 
-                    --names --dates --phones --address
-                    --concept 'kids' 
-                    --output 'docs/' 
-                    --stats stdout
+pipenv run python redactor.py --input '*.txt' --names --dates --phones --address--concept 'kids' --output 'docs/' --stats stdout
 ```
 This command censors sentences related to kids from the input file and outputs statistics to the console.
 
 ### Statistics Output Example:
 ```bash
-pipenv run python redactor.py --input '*.txt' 
-                    --names --dates --phones --address
-                    --concept 'kids' 
-                    --output 'docs/' 
-                    --stats stats.txt
+pipenv run python redactor.py --input '*.txt' --names --dates --phones --address--concept 'kids' --output 'docs/' --stats stats.txt
 ```
 This command will generate a statistics summary file (`stats.txt`) showing the number of censored terms.
 
