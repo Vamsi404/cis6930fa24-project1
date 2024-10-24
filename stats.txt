@@ -1,0 +1,6 @@
+--- Censoring statistics for vmanda-names-in.txt ---
+Names: 4
+Address and Country: 7
+Date: 6
+Phone Numbers or Important Numbers: 4
+
