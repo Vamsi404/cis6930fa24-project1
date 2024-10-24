@@ -36,19 +36,30 @@ If censoring first and last names (e.g., "John Doe"), censoring whitespaces betw
 
 ### Basic Censoring Example:
 ```bash
-python censor_tool.py --input input.txt --output output/ --names --dates
+pipenv run python redactor.py --input '*.txt' 
+                    --names --dates --phones --address
+                    --output 'docs/' 
+                    --stats stdout
 ```
-This command censors names and dates from the input file `input.txt` and saves the result to the `output/` directory.
+This command censors names and dates from the input file `input.txt` and saves the result to the `docs/` directory.
 
 ### Concept Censoring Example:
 ```bash
-python censor_tool.py --input input.txt --output output/ --concept prison --concept confidential --stats stdout
+pipenv run python redactor.py --input '*.txt' 
+                    --names --dates --phones --address
+                    --concept 'kids' 
+                    --output 'docs/' 
+                    --stats stdout
 ```
-This command censors sentences related to "prison" and "confidential" from the input file and outputs statistics to the console.
+This command censors sentences related to kids from the input file and outputs statistics to the console.
 
 ### Statistics Output Example:
 ```bash
-python censor_tool.py --input input.txt --output output/ --stats stats.txt
+pipenv run python redactor.py --input '*.txt' 
+                    --names --dates --phones --address
+                    --concept 'kids' 
+                    --output 'docs/' 
+                    --stats stats.txt
 ```
 This command will generate a statistics summary file (`stats.txt`) showing the number of censored terms.
 
@@ -58,11 +69,11 @@ To install and run the program, follow these steps:
 
 1. Install the required Python packages using pip:
    ```bash
-   pip install -r requirements.txt
+   pipenv install -e
    ```
 2. Download necessary SpaCy models:
    ```bash
-   python -m spacy download en_core_web_md
+   pipenv python -m spacy download en_core_web_md
    ```
 
 ## Tests & Running the Tests
@@ -115,7 +126,3 @@ Phone Numbers or Important Numbers: 1
 
 - SpaCy Documentation: [https://spacy.io/](https://spacy.io/)
 - Hugging Face Transformers: [https://huggingface.co/transformers/](https://huggingface.co/transformers/)
-
---- 
-
-This README provides a complete overview, usage instructions, and justification for decisions like censoring whitespaces and user-defined concepts. It should cover everything needed for the assignment.
