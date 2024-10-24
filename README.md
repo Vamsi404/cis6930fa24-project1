@@ -65,7 +65,25 @@ To install and run the program, follow these steps:
    python -m spacy download en_core_web_md
    ```
 
-## Running the Tests
+## Tests & Running the Tests
+
+1. **Test Censor Names**: Checks if all names (PERSON entities) are correctly censored using spaCy and Hugging Face pipelines.
+
+2. **Test Censor Dates**: Validates correct censoring of various date formats, including custom patterns.
+
+3. **Test Censor Phone Numbers**: Ensures phone numbers in multiple formats are detected and censored.
+
+4. **Test Censor Addresses**: Confirms that organization names, locations, and addresses are censored.
+
+5. **Test Concept Censoring**: Verifies censoring of sentences containing specific concepts (e.g., “prison”).
+
+6. **Test Statistics Generation**: Ensures accurate reporting of censored entities (names, dates, etc.) in statistics.
+
+7. **Test Multiple Input Files**: Checks consistent censoring across multiple input files.
+
+8. **Test Output to stderr/stdout**: Ensures statistics are correctly printed to stderr or stdout when specified.
+
+These shorter descriptions still cover the key aspects of each test.
 
 Ensure all tests are written for each feature and can be executed with the following command:
 ```bash
