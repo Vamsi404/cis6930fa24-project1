@@ -1,7 +1,7 @@
 import unittest
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))  # Add parent directory to Python path
-from assignment1.main import generate_statistics
+from Redactor import generate_statistics
 
 class TestGenerateStatistics(unittest.TestCase):
     

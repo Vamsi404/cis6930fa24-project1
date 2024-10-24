@@ -56,13 +56,13 @@ This command will generate a statistics summary file (`stats.txt`) showing the n
 
 To install and run the program, follow these steps:
 
-1. Install the required Python packages using pip:
+1. Install the required Python packages using pipenv:
    ```bash
-   pipenv install -e
+   pipenv install
    ```
 2. Download necessary SpaCy models:
    ```bash
-   pipenv python -m spacy download en_core_web_md
+   pipenv run python -m spacy download en_core_web_md
    ```
 
 ## Tests & Running the Tests
