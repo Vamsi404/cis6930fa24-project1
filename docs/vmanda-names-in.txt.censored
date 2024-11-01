@@ -4,19 +4,19 @@ From: reservations@marriott.com
 To: ebass@enron.com
 Subject: 81643512 - Marriott Reservation Confirmation Number
 Mime-Version: 1.0
-████████████: text/plain; charset=us-ascii
-█████████████████████████: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 X-From: Reservations@Marriott.com
 X-To: EBASS@ENRON.COM
 X-cc: 
 X-bcc: 
 X-Folder: \Eric_Bass_Nov2001\Notes Folders\All documents
-████████: BASS-E
+X-Origin: BASS-E
 X-FileName: ebass.nsf
 
-███ ███G█ DOWNTOWN
+SAN DIEGO DOWNTOWN
 530 BROADWAY
-███ █████, ██  92101
+SAN DIEGO, CA  92101
 tel: 619-446-3000
 fax: 619-446-3010
 
@@ -48,7 +48,11 @@ SPECIAL REQUEST:
 RATE INFORMATION:
  Arrival Date: ███████████
   Room Rate:  89.10 Per Night. Plus Tax When Applicable
-  Rate Program: ██████████████████████████PLEASE ████████████ TO THIS EMAIL
+  Rate Program: AAA AMERICAN AUTO ASSN
+
+
+
+PLEASE DO NOT REPLY TO THIS EMAIL
 Any Inquires Please call 1-800-321-2211 or your local
 international toll free number.
 
@@ -57,7 +61,7 @@ Confirmation Sent: Thu Nov 30 09:51:00 2000
 
 Legal Disclaimer:
 This confirmation notice has been transmitted to you by electronic
-mail for your convenience. ████████'s record of this confirmation
+mail for your convenience. Marriott's record of this confirmation
 notice is the official record of this reservation. Subsequent
 alterations to this electronic message after its transmission
 will be disregarded.

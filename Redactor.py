@@ -59,13 +59,7 @@ x_header_pattern = re.compile(r'X-[\w-]+:\s*(.*)')
 x_origin_pattern = re.compile(r'X-Origin:\s*([A-Za-z-]+)')
 x_filename_pattern = re.compile(r'X-FileName:\s*([\w\.-]+)')
 WEEKDAYS = {"tomorrow", "yesterday", "today","monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "night", "day"}
-phone_pattern =re.compile(r'''
-        (\+?\d{1,3}[\s.-]?)?
-        \(?\d{2,4}\)?[\s.-]?
-        \d{2,4}[\s.-]?
-        \d{2,4}[\s.-]?
-        \d{2,4}
-    ''', re.VERBOSE)
+phone_pattern =re.compile(r'\b(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/(\d{4}|\d{2})\b')
 
 # Load Hugging Face NER pipeline
 ner_pipeline = pipeline("ner")

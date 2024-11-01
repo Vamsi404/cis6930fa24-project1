@@ -67,21 +67,129 @@ To install and run the program, follow these steps:
 
 ## Tests & Running the Tests
 
-1. **Test Censor Names**: Checks if all names (PERSON entities) are correctly censored using spaCy and Hugging Face pipelines.
+Here's the README section formatted for clarity and readability:
 
-2. **Test Censor Dates**: Validates correct censoring of various date formats, including custom patterns.
+---
 
-3. **Test Censor Phone Numbers**: Ensures phone numbers in multiple formats are detected and censored.
+# README
 
-4. **Test Censor Addresses**: Confirms that organization names, locations, and addresses are censored.
+## Tests for `censor_text`
 
-5. **Test Concept Censoring**: Verifies censoring of sentences containing specific concepts (e.g., “prison”).
+This module includes unit tests for the `censor_text` function, which is designed to censor sensitive information in text, such as names, dates, phone numbers, addresses, and specific concepts. The tests utilize the `unittest` framework and cover various scenarios to ensure the function behaves as expected.
 
-6. **Test Statistics Generation**: Ensures accurate reporting of censored entities (names, dates, etc.) in statistics.
+### Test Cases
 
-7. **Test Multiple Input Files**: Checks consistent censoring across multiple input files.
+1. **Test Censor Names**
+   - **Purpose**: Verifies that all names identified as PERSON entities are correctly censored in the text.
+   - **Code**:
+     ```python
+     def test_censor_names(self):
+         text = "John Doe lives in 123 Main St. He can be reached at +1-3527406574. He was born on 01/01/1994."
+         entity_types = {
+             'names': ['PERSON'],
+             'dates': [],
+             'phones': [],
+             'address': [],
+             'names_hf': ['I-PER'],
+             'address_hf': ['']
+         }
+         args = argparse.Namespace(names=True, dates=False, phones=False, address=False, concept=[])
+         CENSOR_CHAR = '█'
 
-8. **Test Output to stderr/stdout**: Ensures statistics are correctly printed to stderr or stdout when specified.
+         censored_text = censor_text(text, entity_types, args, self.nlp, CENSOR_CHAR, self.ner_pipeline)
+
+         # Assert that names are censored
+         self.assertEqual(censored_text, "████████ lives in 123 Main St. He can be reached at +1-3527406574. He was born on 01/01/1994.")
+     ```
+   - **Expected Output**: The name "John Doe" is replaced with "████████".
+
+2. **Test Censor Dates**
+   - **Purpose**: Ensures that different date formats, including specific patterns and common formats, are accurately censored.
+   - **Code**:
+     ```python
+     def test_censor_dates(self):
+         text = "He was born on 01/01/1994 and started playing in NBA from December 12, 2005."
+         entity_types = {
+             'names': [],
+             'dates': ['DATE', 'TIME'],
+             'phones': [],
+             'address': [],
+             'names_hf': [],
+             'address_hf': []
+         }
+         args = argparse.Namespace(names=False, dates=True, phones=False, address=False, concept=[])
+         CENSOR_CHAR = '█'
+
+         censored_text = censor_text(text, entity_types, args, self.nlp, CENSOR_CHAR, self.ner_pipeline)
+
+         # Assert that dates are censored
+         self.assertEqual(censored_text, "He was born on 01/01/1994 and started playing in NBA from █████████████████.")
+     ```
+   - **Expected Output**: The date "December 12, 2005" is replaced with "████████████████".
+
+3. **Test Censor All**
+   - **Purpose**: Confirms that all specified entities (names, dates, phone numbers, and addresses) are censored correctly in a complex sentence.
+   - **Code**:
+     ```python
+     def test_censor_all(self):
+         text = "John Doe lives in 123 Main St. He can be reached at +1-3527406574. He was born on 01/01/1994 in 12th St, Oregon. Trae Young was his neighbour in Downtown, Atlanta."
+         entity_types = {
+             'names': ['PERSON'],
+             'dates': ['DATE', 'TIME'],
+             'phones': ['CARDINAL'],
+             'address': ['ORG', 'FAC', 'GPE'],
+             'names_hf': ['I-PER'],
+             'address_hf': ['I-LOC']
+         }
+         args = argparse.Namespace(names=True, dates=True, phones=True, address=True, concept=[])
+         CENSOR_CHAR = '█'
+
+         censored_text = censor_text(text, entity_types, args, self.nlp, CENSOR_CHAR, self.ner_pipeline)
+
+         # Assert that names, dates, phones, and addresses are censored
+         self.assertEqual(censored_text, "████████ lives in ███ ████ ██. He can be reached at +1-██████████. He was born on 01/01/1994 in ███████, ██████. ██████████ was his neighbour in ████████, ████████.")
+     ```
+   - **Expected Output**: All sensitive information (names, dates, phone numbers, and addresses) is censored.
+
+4. **Test Concept Censoring**
+   - **Purpose**: Checks the ability to censor specific concepts or terms defined by the user.
+   - **Code**:
+     ```python
+     def test_censor_concept(self):
+         text = "The patient has cancer and was treated with chemotherapy."
+         entity_types = {
+             'names': [],
+             'dates': [],
+             'phones': [],
+             'address': [],
+             'names_hf': [],
+             'address_hf': []
+         }
+         args = argparse.Namespace(names=False, dates=False, phones=False, address=False, concept=['cancer', 'chemotherapy'])
+         CENSOR_CHAR = '█'
+
+         censored_text = censor_text(text, entity_types, args, self.nlp, CENSOR_CHAR, self.ner_pipeline)
+
+         # Assert that concepts 'cancer' and 'chemotherapy' are censored
+         self.assertEqual(censored_text, "█████████████████████████████████████████████████████████.")
+     ```
+   - **Expected Output**: The concepts "cancer" and "chemotherapy" are replaced with "█".
+
+### Explanation of the Code
+
+The test code is structured using Python's `unittest` framework. It includes the following components:
+
+- **Imports**: Essential libraries such as `unittest`, `spacy`, and `transformers` are imported to facilitate testing and entity recognition.
+- **Test Class**: A class named `TestCensorText` inherits from `unittest.TestCase` and contains methods for each test.
+- **Setup Method**: The `setUp` method downloads the required spaCy model and initializes the necessary pipelines for entity recognition.
+- **Test Methods**: Each test method calls `censor_text` with specific parameters to validate the expected output against actual output.
+- **Main Block**: The test suite is executed when the script runs as the main module.
+
+This structured approach ensures that each aspect of the `censor_text` function is tested thoroughly, enabling confidence in its reliability and accuracy.
+
+--- 
+
+Feel free to copy this section into your README file, and let me know if you need further modifications or additions!
 
 These shorter descriptions still cover the key aspects of each test.
 
