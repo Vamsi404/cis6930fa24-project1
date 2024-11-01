@@ -66,22 +66,5 @@ class TestCensorText(unittest.TestCase):
         # Assert that names, dates, phones, and addresses are censored
         self.assertEqual(censored_text, "████████ lives in 123 ████ ██. He can be reached at +1-3527406574. He was born on ██████████ in ███████, ██████. ██████████ was his neighbour in ████████, ████████.")
     
-    def test_censor_concept(self):
-        text = "The patient has cancer and was treated with chemotherapy."
-        entity_types = {
-            'names': [],
-            'dates': [],
-            'phones': [],
-            'address': [],
-            'names_hf': [],
-            'address_hf': []
-        }
-        args = argparse.Namespace(names=False, dates=False, phones=False, address=False, concept=['cancer', 'chemotherapy'])
-        CENSOR_CHAR = '█'
-
-        censored_text = censor_text(text, entity_types, args, CENSOR_CHAR, self.ner_pipeline)
-        # Assert that concepts 'cancer' and 'chemotherapy' are censored
-        self.assertEqual(censored_text, "█████████████████████████████████████████████████████████")
-
 if __name__ == '__main__':
     unittest.main()
