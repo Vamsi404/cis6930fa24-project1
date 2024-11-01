@@ -145,31 +145,7 @@ This module includes unit tests for both the `censor_text` function and the `gen
      ```
    - **Expected Output**: All sensitive information (names, dates, phone numbers, and addresses) is censored.
 
-4. **Test Concept Censoring**
-   - **Purpose**: Checks the ability to censor specific concepts or terms defined by the user.
-   - **Code**:
-     ```python
-     def test_censor_concept(self):
-         text = "The patient has cancer and was treated with chemotherapy."
-         entity_types = {
-             'names': [],
-             'dates': [],
-             'phones': [],
-             'address': [],
-             'names_hf': [],
-             'address_hf': []
-         }
-         args = argparse.Namespace(names=False, dates=False, phones=False, address=False, concept=['cancer', 'chemotherapy'])
-         CENSOR_CHAR = '█'
-
-         censored_text = censor_text(text, entity_types, args, self.nlp, CENSOR_CHAR, self.ner_pipeline)
-
-         # Assert that concepts 'cancer' and 'chemotherapy' are censored
-         self.assertEqual(censored_text, "█████████████████████████████████████████████████████████.")
-     ```
-   - **Expected Output**: The concepts "cancer" and "chemotherapy" are replaced with "█".
-
-5. **Test File Existence**
+4. **Test File Existence**
    - **Purpose**: Confirms that the necessary Python files for the project exist in the specified directory.
    - **Code**:
      ```python
@@ -186,7 +162,7 @@ This module includes unit tests for both the `censor_text` function and the `gen
      ```
    - **Expected Output**: Validates the existence of the `Redactor.py` file, ensuring the necessary components are present for the application to run.
 
-6. **Test Generate Statistics**
+5. **Test Generate Statistics**
    - **Purpose**: Validates that the `generate_statistics` function produces non-negative statistics for the specified categories.
    - **Code**:
      ```python
