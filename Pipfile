@@ -4,12 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-
 torchvision = "*"
 transformers = "*"
 spacy = {version = "*", extras = ["en_core_web_md"]}
 pytest = "*"
-
+pyap = "*"
+nltk = "*"
 
 [dev-packages]
 
