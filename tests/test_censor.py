@@ -10,8 +10,8 @@ from Redactor import censor_text
 
 class TestCensorText(unittest.TestCase):
     def setUp(self):
-        spacy.cli.download("en_core_web_md")
-        self.nlp = spacy.load("en_core_web_md")
+        spacy.cli.download("en_core_web_sm")
+        self.nlp = spacy.load("en_core_web_sm")
         self.ner_pipeline = pipeline("ner")
     
     def test_censor_names(self):
