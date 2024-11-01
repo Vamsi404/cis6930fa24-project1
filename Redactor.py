@@ -113,6 +113,7 @@ def censor_text(text, entity_types, args, CENSOR_CHAR, ner_pipeline):
             censorDate += 1
         elif ent.label_ in entity_types['phones'] and args.phones:
             censored_text = phone_pattern.sub(lambda match: CENSOR_CHAR * len(match.group()), censored_text)
+            censored_text = phone_pattern.sub(lambda match: 'Phone: ' + CENSOR_CHAR * len(match.group(0)), censored_text)
             censorPhone += 1
         elif ent.label_ in entity_types['address'] and args.address:
             censored_text = censored_text[:ent.start_char] + CENSOR_CHAR * len(ent.text) + censored_text[ent.end_char:]
