@@ -27,10 +27,10 @@ class TestCensorText(unittest.TestCase):
         args = argparse.Namespace(names=True, dates=False, phones=False, address=False, concept=[])
         CENSOR_CHAR = '█'
 
-        censored_text = censor_text(text, entity_types, args, self.nlp, CENSOR_CHAR, self.ner_pipeline)
+        censored_text = censor_text(text, entity_types, args, CENSOR_CHAR, self.ner_pipeline)
 
         # Assert that names are censored
-        self.assertEqual(censored_text, "████████ lives in 123 Main St. He can be reached at +1-3527406574. He was born on 01/01/1994.")
+        self.assertEqual(censored_text, "████████ lives in 123 Main St. He can be reached at +1-3527406574. He was born on ██████████.")
 
     def test_censor_dates(self):
         text = "He was born on 01/01/1994 and started playing in NBA from December 12, 2005."
@@ -45,9 +45,9 @@ class TestCensorText(unittest.TestCase):
         args = argparse.Namespace(names=False, dates=True, phones=False, address=False, concept=[])
         CENSOR_CHAR = '█'
 
-        censored_text = censor_text(text, entity_types, args, self.nlp, CENSOR_CHAR, self.ner_pipeline)
+        censored_text = censor_text(text, entity_types, args, CENSOR_CHAR, self.ner_pipeline)
         # Assert that dates are censored
-        self.assertEqual(censored_text, "He was born on 01/01/1994 and started playing in NBA from █████████████████.")
+        self.assertEqual(censored_text, "He was born on ██████████ and started playing in NBA from █████████████████.")
 
     def test_censor_all(self):
         text = "John Doe lives in 123 Main St. He can be reached at +1-3527406574. He was born on 01/01/1994 in 12th St, Oregon. Trae Young was his neighbour in Downtown, Atlanata."
@@ -62,9 +62,9 @@ class TestCensorText(unittest.TestCase):
         args = argparse.Namespace(names=True, dates=True, phones=True, address=True, concept=[])
         CENSOR_CHAR = '█'
 
-        censored_text = censor_text(text, entity_types, args, self.nlp, CENSOR_CHAR, self.ner_pipeline)
+        censored_text = censor_text(text, entity_types, args, CENSOR_CHAR, self.ner_pipeline)
         # Assert that names, dates, phones, and addresses are censored
-        self.assertEqual(censored_text, "████████ lives in ███ ████ ██. He can be reached at +1-██████████. He was born on 01/01/1994 in ███████, ██████. ██████████ was his neighbour in ████████, ████████.")
+        self.assertEqual(censored_text, "████████ lives in 123 ████████ He can be reached at +1-3527406574. He was born on ██████████ in ███████, ██████. ██████████ was his neighbour in ████████, ████████.")
     
     def test_censor_concept(self):
         text = "The patient has cancer and was treated with chemotherapy."
@@ -79,7 +79,7 @@ class TestCensorText(unittest.TestCase):
         args = argparse.Namespace(names=False, dates=False, phones=False, address=False, concept=['cancer', 'chemotherapy'])
         CENSOR_CHAR = '█'
 
-        censored_text = censor_text(text, entity_types, args, self.nlp, CENSOR_CHAR, self.ner_pipeline)
+        censored_text = censor_text(text, entity_types, args, CENSOR_CHAR, self.ner_pipeline)
         # Assert that concepts 'cancer' and 'chemotherapy' are censored
         self.assertEqual(censored_text, "█████████████████████████████████████████████████████████")
 
