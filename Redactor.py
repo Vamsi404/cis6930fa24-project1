@@ -25,7 +25,7 @@ logging.getLogger('keras').setLevel(logging.ERROR)
 logging.getLogger('transformers').setLevel(logging.ERROR)
 
 # Load spaCy English model
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_md")
 
 # Define censor character
 CENSOR_CHAR = '█'

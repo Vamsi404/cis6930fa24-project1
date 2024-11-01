@@ -10,8 +10,8 @@ from Redactor import censor_text
 
 class TestCensorText(unittest.TestCase):
     def setUp(self):
-        spacy.cli.download("en_core_web_sm")
-        self.nlp = spacy.load("en_core_web_sm")
+        spacy.cli.download("en_core_web_md")
+        self.nlp = spacy.load("en_core_web_md")
         self.ner_pipeline = pipeline("ner")
     
     def test_censor_names(self):
@@ -64,7 +64,7 @@ class TestCensorText(unittest.TestCase):
 
         censored_text = censor_text(text, entity_types, args, CENSOR_CHAR, self.ner_pipeline)
         # Assert that names, dates, phones, and addresses are censored
-        self.assertEqual(censored_text, "████████ lives in 123 ████████ He can be reached at +1-3527406574. He was born on ██████████ in ███████, ██████. ██████████ was his neighbour in ████████, ████████.")
+        self.assertEqual(censored_text, "████████ lives in 123 ████ ██. He can be reached at +1-3527406574. He was born on ██████████ in ███████, ██████. ██████████ was his neighbour in ████████, ████████.")
     
     def test_censor_concept(self):
         text = "The patient has cancer and was treated with chemotherapy."
