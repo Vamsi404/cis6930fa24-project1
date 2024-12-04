@@ -48,7 +48,7 @@ This command censors sentences related to kids from the input file and outputs s
 
 ### Statistics Output Example:
 ```bash
-pipenv run python redactor.py --input '*.txt' --names --dates --phones --address--concept 'kids' --output 'docs/' --stats stats.txt
+pipenv run python redactor.py --input '*.txt' --names --dates --phones --address --concept 'kids' --output 'docs/' --stats stats.txt
 ```
 This command will generate a statistics summary file (`stats.txt`) showing the number of censored terms.
 
