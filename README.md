@@ -42,7 +42,7 @@ This command censors names and dates from the input file `input.txt` and saves t
 
 ### Concept Censoring Example:
 ```bash
-pipenv run python redactor.py --input '*.txt' --names --dates --phones --address--concept 'kids' --output 'docs/' --stats stdout
+pipenv run python redactor.py --input '*.txt' --names --dates --phones --address --concept 'kids' --output 'docs/' --stats stdout
 ```
 This command censors sentences related to kids from the input file and outputs statistics to the console.
 
