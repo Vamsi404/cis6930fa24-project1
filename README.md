@@ -217,6 +217,10 @@ Phone Numbers or Important Numbers: 1
 - The program assumes standard text formats (UTF-8 encoded) and might have issues with certain file encodings.
 - Phone numbers are expected to follow the North American format or similar.
 
+
+https://github.com/user-attachments/assets/6afdd990-6b36-494e-87c5-68bc1935d387
+
+
 ## Resources
 
 - SpaCy Documentation: [https://spacy.io/](https://spacy.io/)
